@@ -1,43 +1,49 @@
-@extends('layouts.Master')
-@section('title', 'Manage')
+<?php
 
-@section('content')
-<div class="col-lg-8">
-    <div class="card">
-        <div class="card-header text-center">
-            <h3> Daftar Artikel </h3>
-        </div>
-        
-        </br>
-        </br>  
-        <div class="card body">    
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Tempat, Tanggal Lahir</th>
-                    <th>Alamat</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach($article as $a)
-                    <tr>
-                        <td>{{$a->id}}</td>
-                        <td>{{$a->title}}</td>
-                        <td>{{$a->created_at}}</td>
-                        <td>
-                            <a href="article/edit/{{ $a->id }}" class="btn btn-primary btn-radiuszan" style="background-color:#87CEEB">Edit</a> &nbsp &nbsp
-                            <a href="article/delete/{{ $a->id }}" class="btn btn-primary btn-radiuszan" style="background-color:#FF7F50">Hapus</a>
-                        <td>
-                    </tr>
-                    @endforeach
-                 </tbody>
-            </table>
-        </div>
-        <br>
-        <a href="manage/add" class="btn btn-primary">Tambah Data</a>
-        <br>
-    </div>
-</div>    
-@endsection
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\staff;
+
+class articlecontroller extends Controller
+{
+    public function article(){
+        $staffs = staff::all();
+        return view('article');
+    }
+    public function addArticle(){
+        return view('addArticle');
+    }
+    
+    public function createArticle(Request $request){
+        $siswa = Siswa::find($id);
+        $siswa->No=$request->id;
+        $siswa->Nama=$request->nama;
+        $siswa->TTL=$request->TTL;
+        $siswa->Alamat=$request->Alamat
+            $add->save();
+        return redirect('/manage');
+    }
+
+    public function editArticle($id){
+        $staff = Staff::find($id);
+        return view('editArticle', ['staff'=>$staff]);
+    }
+
+    public function updateArticle($id, Request $request){
+        $siswa = Siswa::find($id);
+        $siswa->No=$request->id;
+        $siswa->Nama=$request->nama;
+        $siswa->TTL=$request->TTL;
+        $siswa->Alamat=$request->Alamat;
+        $siswa->save();
+        return redirect('/manage');
+    }
+
+    public function deleteArticle ($id){
+        $staff = Staff::find($id);
+        $staff->deleteArticle();
+        return redirect('/manage');
+    }
+}
