@@ -11,16 +11,16 @@ class CreateArticlesTable extends Migration
      *
      * @return void
      */
-    public function up()
+        public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('content');
-            // $table->string('address');
-            // $table->integer('price');
-            // $table->string('open');
-            // $table->string('detail');
+            $table->string('address');
+            $table->integer('price');
+            $table->string('open');
+            $table->string('detail');
             $table->string('featured_image');
             $table->timestamps();
         });

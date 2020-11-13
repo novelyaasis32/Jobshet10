@@ -24,7 +24,22 @@
 // Route::get('/', 'WelcomeController@hello');
 // Route::get('/about', 'AboutController@about');
 // Route::get('/article($page)', 'ArticleController@article($page)');
+
 Route::get('/mahasiswa1', 'Mahasiswa1Controller@index');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/manage', 'ArticleController@index')->name('manage');
+
+Route::get('/user', 'ArticleeController@index')->name('user');
+Route::get('/article/addUser','ArticleController@addUser');
+Route::post('/article/createUser','ArticleController@createUser');
+
+Route::get('/article/deleteUser','ArticleController@deleteUser');
+
+Route::get('/article/editUser','ArticleController@editUser');
+Route::post('/article/updateUser','ArticleController@updateUser');
+Route::get('/article/cetak_pdf', 'ArticleController@cetak_pdf');
+
+
 Route::get('/', function(){
     return view ('Home');
 });
@@ -39,7 +54,5 @@ Route::get('/index', function(){
 });
 Route::get('/coba', function(){
     return view ('coba');
+    
 });
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

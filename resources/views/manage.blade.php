@@ -1,49 +1,34 @@
-<?php
+@extends('layouts.Master')
+@section('title','add')
 
-namespace App\Http\Controllers;
+@section('content')
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\staff;
+<div class="col-lg-8">
+    <div class="card">
+        <div class="card-header text-center">
+            <h3>Daftar Artikel</h3>
+        </div>
+        </br>
+        </br>
+        <form action="/create" method="post">
+        <a href="/article/cetak_pdf" class="btn btn-primary"
+            target="_blank">CETAK PDF</a>
 
-class articlecontroller extends Controller
-{
-    public function article(){
-        $staffs = staff::all();
-        return view('article');
-    }
-    public function addArticle(){
-        return view('addArticle');
-    }
-    
-    public function createArticle(Request $request){
-        $siswa = Siswa::find($id);
-        $siswa->No=$request->id;
-        $siswa->Nama=$request->nama;
-        $siswa->TTL=$request->TTL;
-        $siswa->Alamat=$request->Alamat
-            $add->save();
-        return redirect('/manage');
-    }
-
-    public function editArticle($id){
-        $staff = Staff::find($id);
-        return view('editArticle', ['staff'=>$staff]);
-    }
-
-    public function updateArticle($id, Request $request){
-        $siswa = Siswa::find($id);
-        $siswa->No=$request->id;
-        $siswa->Nama=$request->nama;
-        $siswa->TTL=$request->TTL;
-        $siswa->Alamat=$request->Alamat;
-        $siswa->save();
-        return redirect('/manage');
-    }
-
-    public function deleteArticle ($id){
-        $staff = Staff::find($id);
-        $staff->deleteArticle();
-        return redirect('/manage');
-    }
-}
+                @csrf
+                    <div class="form-group"><br><br>
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control"required="required" name="title" placeholder="Add Title Here"></br>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image Url</label>
+                        <input type="text" class="form-control"required="required" name="image" placeholder="Link Image Here"></br>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <input type="text" class="form-control"required="required" name="content" placeholder="Add Content Here"></br>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-center2" class="btn btn-primary btn-radiuszan"><i class="fa fa-plus-circle" aria-hidden="true" ></i>  Add Product</button><br><br>
+                </form>
+</div>
+</div>
+@endsection

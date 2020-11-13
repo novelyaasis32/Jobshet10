@@ -10,4 +10,8 @@ class AboutController extends Controller
         return "Nama : Novelya Asis S <br> 
         NIM : 1931710053"; 
     }
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
 }
